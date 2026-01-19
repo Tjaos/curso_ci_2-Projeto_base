@@ -22,3 +22,11 @@ jobs:
         username: tjaos
     # Password or personal access token used to log against the Docker registry
         password: ${{ secrets.PASSWORD_DOCKER_HUB }}
+
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v6.18.0
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: tjaos/go_ci:${{ github.ref_name}}
